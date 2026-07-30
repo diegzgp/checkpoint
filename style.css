@@ -83,6 +83,16 @@ h2 {
     margin-bottom: 6px;
 }
 
+.lives-warning {
+    background: rgba(255, 193, 7, 0.12);
+    border: 1px solid rgba(255, 193, 7, 0.5);
+    color: #ffd873;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
 .btn {
     display: inline-block;
     border: none;
@@ -134,11 +144,23 @@ h2 {
     border: 1px solid rgba(159, 227, 255, 0.3);
     color: #eef1ff;
     padding: 14px;
+    min-height: 48px;
     border-radius: 10px;
     font-size: 15px;
     text-align: left;
     cursor: pointer;
     transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+/* Check/X symbols back up the color coding so the feedback isn't color-only */
+.option-btn.correct::after {
+    content: " \2713";
+    font-weight: bold;
+}
+
+.option-btn.incorrect::after {
+    content: " \2717";
+    font-weight: bold;
 }
 
 .option-btn:hover:not(:disabled) {
@@ -172,6 +194,16 @@ h2 {
 
 .feedback.incorrect-text {
     color: #ff8a97;
+}
+
+.fact {
+    font-size: 14px;
+    font-style: italic;
+    color: #b9c6ff;
+    background: rgba(159, 227, 255, 0.08);
+    border-left: 3px solid #9fe3ff;
+    padding: 10px 14px;
+    border-radius: 6px;
 }
 
 .hidden {
@@ -220,6 +252,22 @@ h2 {
     }
 
     .panel {
-        padding: 20px;
+        padding: 16px;
+    }
+
+    .option-btn {
+        min-height: 52px;
+        padding: 14px 16px;
+        font-size: 16px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 14px 18px;
+    }
+
+    .options-container {
+        gap: 10px;
+        margin: 16px 0;
     }
 }

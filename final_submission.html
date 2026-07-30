@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cosmic Trivia — Final Submission</title>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+        color: #111;
+        line-height: 1.5;
+    }
+    h1 {
+        border-bottom: 3px solid #333;
+        padding-bottom: 8px;
+    }
+    h2 {
+        margin-top: 32px;
+        color: #1f5f99;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 4px;
+    }
+    .fill-in {
+        background: #fff8db;
+        border: 1px dashed #c9a227;
+        padding: 10px 14px;
+        color: #7a5c00;
+        font-style: italic;
+    }
+    a {
+        color: #1f5f99;
+    }
+    .screenshot-box {
+        border: 2px dashed #999;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #888;
+        font-style: italic;
+    }
+    .screenshot-box img {
+        max-width: 100%;
+        display: block;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 13px;
+        margin-top: 12px;
+    }
+    th, td {
+        border: 1px solid #ccc;
+        padding: 6px 8px;
+        text-align: left;
+        vertical-align: top;
+    }
+    th {
+        background: #f0f0f0;
+    }
+    @media print {
+        .fill-in { background: none; border: 1px solid #999; }
+    }
+</style>
+</head>
+<body>
+
+<h1>Cosmic Trivia — Checkpoint 4 Final Submission</h1>
+<p><strong>Name:</strong> Diego Garcia &nbsp; | &nbsp; <strong>Course:</strong> DIG 2500</p>
+
+<h2>1. GitHub Repository Link</h2>
+<p><a href="https://github.com/diegzgp/checkpoint">https://github.com/diegzgp/checkpoint</a></p>
+
+<h2>2. Published GitHub Pages Link</h2>
+<p><a href="https://diegzgp.github.io/checkpoint/">https://diegzgp.github.io/checkpoint/</a></p>
+
+<h2>3. Final Walkthrough Video</h2>
+<p class="fill-in">
+    [Record a 4–6 minute screen walkthrough per the assignment checklist, upload it
+    (YouTube unlisted, Google Drive, Loom, etc.), and paste the link here.]
+</p>
+
+<h2>4. Final Project Screenshot</h2>
+<div class="screenshot-box">
+    <img src="screenshots/final_screenshot.png"
+         alt="Screenshot of the Cosmic Trivia game showing an active trivia question"
+         onerror="this.remove(); document.getElementById('screenshot-fallback').style.display='block';">
+    <span id="screenshot-fallback" style="display:none;">
+        [Screenshot not found. Save it to
+        screenshots/final_screenshot.png in this project folder, then refresh this page.]
+    </span>
+</div>
+
+<h2>5. User Testing and Revision Summary</h2>
+<p>
+    One area that could be improved is making the three-life system more noticeable.
+    A player may begin the game without fully reading the instructions and become
+    confused when the mission ends after three incorrect answers. The feedback could
+    also include a short explanation of why an answer is correct instead of only
+    displaying "Correct" or highlighting the answer. During my own testing, I
+    sometimes moved to the next question quickly without spending much time reading
+    the feedback. The layout worked on smaller screens, but the spacing, text size,
+    and answer buttons could be improved to make the mobile version more comfortable.
+    Overall, the main interactions worked, but the game would benefit from clearer
+    progress information, stronger feedback, and more polished responsive design.
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Planned Revision</th>
+            <th>Type</th>
+            <th>Reason</th>
+            <th>Priority</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Highlight the three-life rule above the Start Mission button.</td>
+            <td>Usability and clarity</td>
+            <td>Players may skip instructions and not understand why the game ends after 3 wrong answers.</td>
+            <td>High</td>
+            <td>Done</td>
+        </tr>
+        <tr>
+            <td>Add a short space fact after each answer is revealed.</td>
+            <td>Interaction and feedback</td>
+            <td>Makes the game more educational and gives more useful feedback than "Correct"/"Incorrect".</td>
+            <td>High</td>
+            <td>Done</td>
+        </tr>
+        <tr>
+            <td>Add check mark / X symbols instead of relying on color alone.</td>
+            <td>Accessibility and feedback</td>
+            <td>Players with color-vision difficulties may not clearly read color-only feedback.</td>
+            <td>High</td>
+            <td>Done</td>
+        </tr>
+        <tr>
+            <td>Increase button size and make answer buttons full width on small screens.</td>
+            <td>Responsive design</td>
+            <td>Makes the game easier to read and tap on phones.</td>
+            <td>High</td>
+            <td>Done</td>
+        </tr>
+        <tr>
+            <td>Add a progress bar showing how far through the 8 questions the player is.</td>
+            <td>Usability and clarity</td>
+            <td>The counter works, but a visual bar communicates progress faster.</td>
+            <td>Medium</td>
+            <td>Planned</td>
+        </tr>
+        <tr>
+            <td>Show final score, remaining lives, and a performance-based message on the results screen.</td>
+            <td>Interaction and feedback</td>
+            <td>Makes finishing the game feel more rewarding and complete.</td>
+            <td>Medium</td>
+            <td>Partially done (score + lives shown; message variety planned)</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>6. Completed README in the Repository</h2>
+<p>
+    Confirmed present at
+    <a href="https://github.com/diegzgp/checkpoint/blob/main/README.md">README.md</a>.
+</p>
+
+</body>
+</html>

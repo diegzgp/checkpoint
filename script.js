@@ -1,44 +1,53 @@
-// Trivia question bank: each question has 4 options and the index of the correct one
+// Trivia question bank: each question has 4 options, the index of the
+// correct one, and a short fact shown as feedback after answering
 const questions = [
     {
         question: "Which planet is known as the Red Planet?",
         options: ["Venus", "Mars", "Jupiter", "Saturn"],
-        correctIndex: 1
+        correctIndex: 1,
+        fact: "Mars gets its reddish color from iron oxide (rust) covering much of its surface."
     },
     {
         question: "What is the closest star to Earth?",
         options: ["Proxima Centauri", "The Sun", "Sirius", "Betelgeuse"],
-        correctIndex: 1
+        correctIndex: 1,
+        fact: "The Sun is about 93 million miles away, and its light takes roughly 8 minutes to reach Earth."
     },
     {
         question: "What galaxy is Earth located in?",
         options: ["Andromeda", "Triangulum", "Milky Way", "Whirlpool"],
-        correctIndex: 2
+        correctIndex: 2,
+        fact: "The Milky Way is estimated to contain 100 to 400 billion stars."
     },
     {
         question: "Which planet has the most moons in our solar system?",
         options: ["Earth", "Mars", "Saturn", "Neptune"],
-        correctIndex: 2
+        correctIndex: 2,
+        fact: "Saturn has over 140 confirmed moons, more than any other planet."
     },
     {
         question: "What do astronomers call a collapsed star with gravity so strong that not even light can escape?",
         options: ["Neutron star", "Black hole", "Supernova", "Pulsar"],
-        correctIndex: 1
+        correctIndex: 1,
+        fact: "Once matter crosses a black hole's event horizon, not even light can escape its gravity."
     },
     {
         question: "Which spacecraft carried the first humans to the Moon?",
         options: ["Apollo 11", "Sputnik 1", "Voyager 1", "Columbia"],
-        correctIndex: 0
+        correctIndex: 0,
+        fact: "Apollo 11 landed on the Moon on July 20, 1969."
     },
     {
         question: "What is the largest planet in our solar system?",
         options: ["Saturn", "Uranus", "Jupiter", "Neptune"],
-        correctIndex: 2
+        correctIndex: 2,
+        fact: "Jupiter is so large that every other planet in the solar system could fit inside it."
     },
     {
         question: "What force keeps planets in orbit around the Sun?",
         options: ["Magnetism", "Friction", "Gravity", "Inertia"],
-        correctIndex: 2
+        correctIndex: 2,
+        fact: "Gravity is the force that keeps planets, moons, and stars bound into orbits throughout the universe."
     }
 ];
 
@@ -63,6 +72,7 @@ const scoreDisplay = document.getElementById("score-display");
 const questionText = document.getElementById("question-text");
 const optionsContainer = document.getElementById("options-container");
 const feedbackText = document.getElementById("feedback-text");
+const factText = document.getElementById("fact-text");
 const endTitle = document.getElementById("end-title");
 const finalScoreText = document.getElementById("final-score-text");
 
@@ -110,6 +120,8 @@ function loadQuestion() {
 
     feedbackText.classList.add("hidden");
     feedbackText.textContent = "";
+    factText.classList.add("hidden");
+    factText.textContent = "";
     nextBtn.classList.add("hidden");
 
     // Clear previous answer buttons and build new ones for this question
@@ -133,7 +145,7 @@ function handleAnswer(selectedButton, selectedIndex) {
 
     if (selectedIndex === current.correctIndex) {
         selectedButton.classList.add("correct");
-        feedbackText.textContent = "Correct!";
+        feedbackText.textContent = "✓ Correct!";
         feedbackText.classList.remove("incorrect-text");
         feedbackText.classList.add("correct-text");
         score++;
@@ -142,11 +154,15 @@ function handleAnswer(selectedButton, selectedIndex) {
         allOptionButtons[current.correctIndex].classList.add("correct");
         lives--;
         feedbackText.textContent = lives > 0
-            ? "Not quite. The correct answer is highlighted."
-            : "Not quite, and that was your last life.";
+            ? "✗ Not quite. The correct answer is highlighted."
+            : "✗ Not quite, and that was your last life.";
         feedbackText.classList.remove("correct-text");
         feedbackText.classList.add("incorrect-text");
     }
+
+    // Show a short space fact as extra feedback, regardless of right or wrong
+    factText.textContent = current.fact;
+    factText.classList.remove("hidden");
 
     feedbackText.classList.remove("hidden");
     livesDisplay.textContent = `Lives: ${"♥ ".repeat(lives).trim() || "none"}`;

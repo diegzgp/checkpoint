@@ -73,29 +73,38 @@ starting a mission, answering correctly and incorrectly, running out of
 lives mid-game, completing all 8 questions, and restarting. This surfaced
 several real issues, which are listed in Revisions below.
 
-**Classmate testing:** [Fill in — summarize what your two classmates
-actually said when they played the published GitHub Pages link. Note
-anything they got confused by, liked, or ran into as a bug.]
+**Self/playtest summary:** One area that could be improved is making the
+three-life system more noticeable. A player may begin the game without
+fully reading the instructions and become confused when the mission ends
+after three incorrect answers. The feedback could also include a short
+explanation of why an answer is correct instead of only displaying
+"Correct" or highlighting the answer. During my own testing, I sometimes
+moved to the next question quickly without spending much time reading the
+feedback. The layout worked on smaller screens, but the spacing, text
+size, and answer buttons could be improved to make the mobile version more
+comfortable. Overall, the main interactions worked, but the game would
+benefit from clearer progress information, stronger feedback, and more
+polished responsive design.
 
 ## Revisions
-1. **Added a lives/health system and distinct win vs. lose states.** The
-   original prototype always ended on a single "Mission Complete" screen
-   showing a score, with no real win/lose distinction. Added a 3-life
-   system so a poor run now ends in a clearly different "Mission Failed"
-   screen (red), while finishing all questions with a life left shows
-   "Mission Success" (green).
-2. **Added visible focus states for keyboard users.** Buttons previously
-   relied on the browser's default focus outline, which wasn't guaranteed
-   to be visible against the dark theme. Added an explicit high-contrast
-   `:focus-visible` outline on all buttons.
-3. **Added `aria-live` regions and a footer/credits section.** Score,
-   lives, and feedback text updates were visual-only, so screen reader
-   users wouldn't know the game state changed. Marked the HUD and feedback
-   text as `aria-live="polite"`, marked the decorative starfield as
-   `aria-hidden`, and added a footer crediting the build and confirming no
-   external assets were used.
-4. [Fill in — add any additional revision made in response to classmate
-   feedback, e.g. wording changes, difficulty adjustments, layout fixes.]
+
+| Planned Revision | Type of Revision | Reason for Revision | Priority | Status |
+|---|---|---|---|---|
+| Make the three-life rule more noticeable by placing it in a highlighted message above the Start Mission button. | Usability and clarity | Some players may skip the instructions and not understand why the game ends after three incorrect answers. | High | ✅ Done |
+| Add a short explanation or space fact after each answer is revealed. | Interaction and feedback | Makes the game more educational and gives the player more useful feedback than just "Correct"/"Incorrect". | High | ✅ Done |
+| Add symbols or text labels (check mark / X) instead of depending only on green and red colors. | Accessibility and feedback | Players with color-vision difficulties may not clearly understand color-only feedback. | High | ✅ Done |
+| Increase button size, reduce unnecessary spacing, and make answer buttons full width on smaller screens. | Responsive design | Makes the game easier to read and interact with on phones. | High | ✅ Done |
+| Add a progress bar showing how far the player is through the eight questions. | Usability and clarity | The question counter works, but a visual progress bar would make progress easier to understand at a glance. | Medium | Planned (see Future Improvements) |
+| Improve the final results screen by showing the final score, remaining lives, and a message based on performance. | Interaction and feedback | A more detailed results screen makes finishing the game feel more rewarding and complete. | Medium | ✅ Partially done — the Mission Success/Failed screen already reports score and remaining lives; a more varied performance-based message is still planned |
+
+Beyond the table above, two earlier structural revisions were also made
+based on a full code-level walkthrough:
+- **Added a lives/health system and distinct win vs. lose states.** The
+  original prototype always ended on a single "Mission Complete" screen
+  with no real win/lose distinction.
+- **Added `aria-live` regions and a footer/credits section** so score,
+  lives, and feedback updates are announced to screen reader users, not
+  just shown visually.
 
 ## Technologies Used
 - HTML
@@ -112,6 +121,10 @@ font file. Development assistance (planning, code generation, and this
 README) was provided by Claude (Anthropic).
 
 ## Future Improvements
+- A visual progress bar showing how far the player is through the 8
+  questions, alongside the existing question counter.
+- A more varied, performance-based message on the results screen (e.g.
+  different tone/text for a narrow win vs. a perfect run).
 - A larger, categorized question bank (e.g. planets, missions, physics) with
   randomized question order so replays feel different.
 - A timer per question to add difficulty and urgency.
