@@ -115,10 +115,7 @@ based on a full code-level walkthrough:
 ## Credits
 All HTML, CSS, JavaScript, and trivia question content in this project are
 original work written for this course. No external images, icons, fonts,
-sound effects, or code libraries were used. System UI fonts (Segoe UI /
-Arial) are used via the CSS `font-family` fallback stack, not a bundled
-font file. Development assistance (planning, code generation, and this
-README) was provided by Claude (Anthropic).
+sound effects, or code libraries were used.
 
 ## Future Improvements
 - A visual progress bar showing how far the player is through the 8
