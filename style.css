@@ -99,14 +99,23 @@ h2 {
     color: #ffffff;
 }
 
-.btn-primary:hover,
-.btn-primary:focus {
+.btn-primary:hover {
     transform: translateY(-2px);
+}
+
+/* Visible keyboard focus ring for every interactive element, high-contrast
+   against the dark theme so keyboard users can always see where they are */
+.btn:focus-visible,
+.option-btn:focus-visible {
+    outline: 3px solid #9fe3ff;
+    outline-offset: 3px;
 }
 
 .hud {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
     font-size: 14px;
     color: #9fe3ff;
     margin-bottom: 16px;
@@ -169,6 +178,33 @@ h2 {
     display: none;
 }
 
+/* Win state: end screen title turns green when the mission is completed */
+#end-title.success {
+    color: #6be3a3;
+}
+
+/* Lose state: end screen title turns red when the mission fails */
+#end-title.failure {
+    color: #ff8a97;
+}
+
+.noscript-warning {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 16px 20px;
+    text-align: center;
+    background: #7d2e3a;
+    border-radius: 10px;
+}
+
+.site-footer {
+    text-align: center;
+    font-size: 13px;
+    color: #9fa3c4;
+    margin-top: 24px;
+    padding: 0 12px;
+}
+
 @media (max-width: 560px) {
     .options-container {
         grid-template-columns: 1fr;
@@ -181,5 +217,9 @@ h2 {
     .hud {
         flex-direction: column;
         gap: 4px;
+    }
+
+    .panel {
+        padding: 20px;
     }
 }

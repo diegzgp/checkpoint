@@ -43,8 +43,10 @@ const questions = [
 ];
 
 // Game state
+const STARTING_LIVES = 3;
 let currentQuestionIndex = 0;
 let score = 0;
+let lives = STARTING_LIVES;
 
 // Select all elements the game needs to update
 const startScreen = document.getElementById("start-screen");
@@ -56,35 +58,44 @@ const nextBtn = document.getElementById("next-btn");
 const restartBtn = document.getElementById("restart-btn");
 
 const questionCounter = document.getElementById("question-counter");
+const livesDisplay = document.getElementById("lives-display");
 const scoreDisplay = document.getElementById("score-display");
 const questionText = document.getElementById("question-text");
 const optionsContainer = document.getElementById("options-container");
 const feedbackText = document.getElementById("feedback-text");
+const endTitle = document.getElementById("end-title");
 const finalScoreText = document.getElementById("final-score-text");
 
 // Start button: switch from the briefing screen to the game screen
 startBtn.addEventListener("click", () => {
     currentQuestionIndex = 0;
     score = 0;
+    lives = STARTING_LIVES;
     startScreen.classList.add("hidden");
     gameScreen.classList.remove("hidden");
     endScreen.classList.add("hidden");
     loadQuestion();
 });
 
-// Restart button: reset state and go back to the briefing screen
+// Restart button: go back to the briefing screen (Start Mission resets state)
 restartBtn.addEventListener("click", () => {
     endScreen.classList.add("hidden");
     startScreen.classList.remove("hidden");
 });
 
-// Next button: advance to the next question, or show the end screen if finished
+// Next button: end the mission if out of lives, otherwise advance the question
+// (or show the win screen once every question has been answered)
 nextBtn.addEventListener("click", () => {
+    if (lives <= 0) {
+        showEndScreen(false);
+        return;
+    }
+
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         loadQuestion();
     } else {
-        showEndScreen();
+        showEndScreen(true);
     }
 });
 
@@ -93,6 +104,7 @@ function loadQuestion() {
     const current = questions[currentQuestionIndex];
 
     questionCounter.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+    livesDisplay.textContent = `Lives: ${"♥ ".repeat(lives).trim() || "none"}`;
     scoreDisplay.textContent = `Score: ${score}`;
     questionText.textContent = current.question;
 
@@ -128,19 +140,37 @@ function handleAnswer(selectedButton, selectedIndex) {
     } else {
         selectedButton.classList.add("incorrect");
         allOptionButtons[current.correctIndex].classList.add("correct");
-        feedbackText.textContent = "Not quite. The correct answer is highlighted.";
+        lives--;
+        feedbackText.textContent = lives > 0
+            ? "Not quite. The correct answer is highlighted."
+            : "Not quite, and that was your last life.";
         feedbackText.classList.remove("correct-text");
         feedbackText.classList.add("incorrect-text");
     }
 
     feedbackText.classList.remove("hidden");
+    livesDisplay.textContent = `Lives: ${"♥ ".repeat(lives).trim() || "none"}`;
     scoreDisplay.textContent = `Score: ${score}`;
     nextBtn.classList.remove("hidden");
+    nextBtn.textContent = lives <= 0 ? "See Results" : "Next Question";
 }
 
-// Shows the final score once all questions have been answered
-function showEndScreen() {
+// Shows the end screen: a win (Mission Success) if every question was
+// answered with a life remaining, or a loss (Mission Failed) otherwise
+function showEndScreen(won) {
     gameScreen.classList.add("hidden");
     endScreen.classList.remove("hidden");
-    finalScoreText.textContent = `You scored ${score} out of ${questions.length}.`;
+
+    endTitle.classList.remove("success", "failure");
+    if (won) {
+        endTitle.textContent = "Mission Success";
+        endTitle.classList.add("success");
+        finalScoreText.textContent =
+            `You completed the mission with ${score} out of ${questions.length} correct and ${lives} life${lives === 1 ? "" : "s"} to spare.`;
+    } else {
+        endTitle.textContent = "Mission Failed";
+        endTitle.classList.add("failure");
+        finalScoreText.textContent =
+            `You ran out of lives on question ${currentQuestionIndex + 1} of ${questions.length}, with a score of ${score}.`;
+    }
 }
